@@ -1,0 +1,42 @@
+<view class="page">
+  <!-- 顶部标题 -->
+  <view class="app-head">
+    <text class="title">今日任务</text>
+    <text class="date">{{today}}</text>
+    <text class="user" bindtap="onTapUser">{{loggedIn ? nickname : '未登录 ›'}}</text>
+  </view>
+
+  <!-- 筛选标签 -->
+  <scroll-view scroll-x class="filter-tabs">
+    <view class="tab {{activeType === item.key ? 'on' : ''}}"
+          wx:for="{{tabs}}" wx:key="key"
+          bindtap="onTapTab" data-key="{{item.key}}">
+      {{item.label}} {{item.count}}
+    </view>
+  </scroll-view>
+
+  <!-- 任务列表（写死数据） -->
+  <view class="task-list">
+    <view class="task-card {{item.done ? 'done' : ''}}" wx:for="{{filteredTasks}}" wx:key="id">
+      <view class="task-top">
+        <view class="ph">{{item.petIcon}}</view>
+        <view class="task-main">
+          <view class="n">{{item.petName}}<text class="em">{{item.breed}}</text></view>
+          <view class="meta">
+            <text class="p0">{{item.type}}</text>
+            <text>{{item.deadline}}</text>
+            <text class="state" wx:if="{{!item.done}}">待打卡</text>
+          </view>
+        </view>
+      </view>
+      <view class="task-foot" wx:if="{{!item.done}}">
+        <view class="upload"><view class="upload-box">＋</view><text>上传照片</text></view>
+        <view class="btn-sm" bindtap="onDone" data-id="{{item.id}}">打卡完成</view>
+      </view>
+      <view class="task-foot" wx:else>
+        <view class="upload"><text>已上传 {{item.photos}} 张照片</text></view>
+        <view class="done-tag">✓ 已完成 {{item.doneTime}}</view>
+      </view>
+    </view>
+  </view>
+</view>

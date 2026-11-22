@@ -1,0 +1,11 @@
+/* 全局样式 */
+page {
+  background: #F7F5F2;
+  font-size: 28rpx;
+  color: #2D2A26;
+  line-height: 1.5;
+}
+
+view, text, button {
+  box-sizing: border-box;
+}

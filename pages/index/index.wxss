@@ -1,0 +1,173 @@
+.page {
+  padding-bottom: 40rpx;
+}
+
+.app-head {
+  background: #fff;
+  padding: 20rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  border-bottom: 1rpx solid #EAE5DF;
+}
+
+.app-head .title {
+  font-size: 34rpx;
+  font-weight: 700;
+  flex: 1;
+}
+
+.app-head .date {
+  font-size: 22rpx;
+  color: #8C8680;
+}
+
+.app-head .user {
+  font-size: 22rpx;
+  color: #FF7A45;
+}
+
+.filter-tabs {
+  white-space: nowrap;
+  padding: 20rpx 24rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #EAE5DF;
+}
+
+.tab {
+  display: inline-block;
+  padding: 10rpx 26rpx;
+  border-radius: 40rpx;
+  background: #F7F5F2;
+  font-size: 23rpx;
+  color: #8C8680;
+  margin-right: 16rpx;
+  border: 1rpx solid transparent;
+}
+
+.tab.on {
+  background: #FF7A45;
+  color: #fff;
+  border-color: #FF7A45;
+  font-weight: 600;
+}
+
+.task-list {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.task-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+}
+
+.task-card.done {
+  background: #FAF8F5;
+}
+
+.task-top {
+  display: flex;
+  gap: 20rpx;
+  align-items: flex-start;
+}
+
+.ph {
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 20rpx;
+  background: #F1EEE9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  flex-shrink: 0;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.n {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.em {
+  font-style: normal;
+  font-size: 22rpx;
+  color: #8C8680;
+  font-weight: 400;
+  margin-left: 10rpx;
+}
+
+.meta {
+  font-size: 22rpx;
+  color: #8C8680;
+  margin-top: 10rpx;
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.p0 {
+  background: #FFEFE7;
+  color: #D25B23;
+  border-radius: 10rpx;
+  padding: 4rpx 14rpx;
+  font-weight: 600;
+}
+
+.state {
+  color: #FF7A45;
+  font-weight: 600;
+}
+
+.task-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #F5F2EE;
+}
+
+.upload {
+  font-size: 22rpx;
+  color: #8C8680;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.upload-box {
+  width: 68rpx;
+  height: 68rpx;
+  border: 1rpx dashed #D8D2CA;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #BDB6AC;
+  font-size: 30rpx;
+}
+
+.btn-sm {
+  background: #FF7A45;
+  color: #fff;
+  border-radius: 16rpx;
+  padding: 12rpx 28rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.done-tag {
+  font-size: 22rpx;
+  color: #2E9E5B;
+  font-weight: 600;
+}

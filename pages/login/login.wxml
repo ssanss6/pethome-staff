@@ -1,0 +1,19 @@
+<view class="login-page">
+  <view class="logo">🧑‍🔧</view>
+  <view class="title">员工登录</view>
+  <view class="subtitle">使用后台分配的账号登录</view>
+
+  <view class="form">
+    <view class="field">
+      <text class="label">账号</text>
+      <input class="input" placeholder="请输入账号" value="{{username}}" bindinput="onUsername" />
+    </view>
+    <view class="field">
+      <text class="label">密码</text>
+      <input class="input" password placeholder="请输入密码" value="{{password}}" bindinput="onPassword" />
+    </view>
+  </view>
+
+  <button class="btn" bindtap="onLogin" loading="{{loading}}" disabled="{{loading}}">登 录</button>
+  <view class="tip">默认演示账号 staff01 / 123456</view>
+</view>
