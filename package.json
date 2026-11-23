@@ -1,0 +1,8 @@
+{
+  "name": "pethome-staff",
+  "version": "1.0.0",
+  "description": "员工小程序",
+  "dependencies": {
+    "@vant/weapp": "^1.11.7"
+  }
+}

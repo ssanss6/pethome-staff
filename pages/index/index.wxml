@@ -19,7 +19,7 @@
   <view class="task-list">
     <view class="task-card {{item.done ? 'done' : ''}}" wx:for="{{filteredTasks}}" wx:key="id">
       <view class="task-top">
-        <view class="ph">{{item.petIcon}}</view>
+        <view class="ph"><van-icon name="smile-o" size="40rpx" color="#BDB6AC" /></view>
         <view class="task-main">
           <view class="n">{{item.petName}}<text class="em">{{item.breed}}</text></view>
           <view class="meta">
@@ -30,7 +30,7 @@
         </view>
       </view>
       <view class="task-foot" wx:if="{{!item.done}}">
-        <view class="upload"><view class="upload-box">＋</view><text>上传照片</text></view>
+        <view class="upload"><view class="upload-box"><van-icon name="plus" size="30rpx" color="#BDB6AC" /></view><text>上传照片</text></view>
         <view class="btn-sm" bindtap="onDone" data-id="{{item.id}}">打卡完成</view>
       </view>
       <view class="task-foot" wx:else>

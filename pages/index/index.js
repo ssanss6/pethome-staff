@@ -15,10 +15,10 @@ Page({
     ],
     // 写死任务数据
     allTasks: [
-      { id: 1, petIcon: '🐕', petName: '豆豆', breed: '金毛 · 标准间A03', type: '喂食', typeKey: 'feed', deadline: '08:30 前', done: false },
-      { id: 2, petIcon: '🐈', petName: '团子', breed: '布偶 · 猫咪房C02', type: '清洁', typeKey: 'clean', deadline: '10:00 前', done: false },
-      { id: 3, petIcon: '🐕', petName: '豆豆', breed: '金毛 · 标准间A03', type: '遛弯', typeKey: 'walk', deadline: '08:30', done: true, doneTime: '08:12', photos: 3 },
-      { id: 4, petIcon: '🐩', petName: '可乐', breed: '比熊 · 标准间A01', type: '喂食', typeKey: 'feed', deadline: '08:30', done: true, doneTime: '08:05', photos: 2 }
+      { id: 1, petName: '豆豆', breed: '金毛 · 标准间A03', type: '喂食', typeKey: 'feed', deadline: '08:30 前', done: false },
+      { id: 2, petName: '团子', breed: '布偶 · 猫咪房C02', type: '清洁', typeKey: 'clean', deadline: '10:00 前', done: false },
+      { id: 3, petName: '豆豆', breed: '金毛 · 标准间A03', type: '遛弯', typeKey: 'walk', deadline: '08:30', done: true, doneTime: '08:12', photos: 3 },
+      { id: 4, petName: '可乐', breed: '比熊 · 标准间A01', type: '喂食', typeKey: 'feed', deadline: '08:30', done: true, doneTime: '08:05', photos: 2 }
     ],
     filteredTasks: []
   },

@@ -9,6 +9,9 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F7F5F2"
   },
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index"
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

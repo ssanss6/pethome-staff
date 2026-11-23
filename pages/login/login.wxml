@@ -1,5 +1,5 @@
 <view class="login-page">
-  <view class="logo">🧑‍🔧</view>
+  <view class="logo"><van-icon name="manager-o" size="72rpx" color="#FF7A45" /></view>
   <view class="title">员工登录</view>
   <view class="subtitle">使用后台分配的账号登录</view>
 
