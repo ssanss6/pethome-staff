@@ -6,37 +6,45 @@
     <text class="user" bindtap="onTapUser">{{loggedIn ? nickname : '未登录 ›'}}</text>
   </view>
 
-  <!-- 筛选标签 -->
-  <scroll-view scroll-x class="filter-tabs">
-    <view class="tab {{activeType === item.key ? 'on' : ''}}"
-          wx:for="{{tabs}}" wx:key="key"
-          bindtap="onTapTab" data-key="{{item.key}}">
-      {{item.label}} {{item.count}}
-    </view>
-  </scroll-view>
+  <block wx:if="{{loggedIn}}">
+    <!-- 筛选标签 -->
+    <scroll-view scroll-x class="filter-tabs">
+      <view class="tab {{activeType === item.key ? 'on' : ''}}"
+            wx:for="{{tabs}}" wx:key="key"
+            bindtap="onTapTab" data-key="{{item.key}}">
+        {{item.label}} {{item.count}}
+      </view>
+    </scroll-view>
 
-  <!-- 任务列表（写死数据） -->
-  <view class="task-list">
-    <view class="task-card {{item.done ? 'done' : ''}}" wx:for="{{filteredTasks}}" wx:key="id">
-      <view class="task-top">
-        <view class="ph"><van-icon name="smile-o" size="40rpx" color="#BDB6AC" /></view>
-        <view class="task-main">
-          <view class="n">{{item.petName}}<text class="em">{{item.breed}}</text></view>
-          <view class="meta">
-            <text class="p0">{{item.type}}</text>
-            <text>{{item.deadline}}</text>
-            <text class="state" wx:if="{{!item.done}}">待打卡</text>
+    <!-- 任务列表 -->
+    <view class="task-list">
+      <view class="task-card {{item.status === 'DONE' ? 'done' : ''}}" wx:for="{{filteredTasks}}" wx:key="id">
+        <view class="task-top">
+          <view class="ph"><van-icon name="smile-o" size="40rpx" color="#BDB6AC" /></view>
+          <view class="task-main">
+            <view class="n">{{item.petName}}<text class="em">{{item.cageNo}} · {{item.roomTypeName}}</text></view>
+            <view class="meta">
+              <text class="p0">{{item.taskTypeDesc}}</text>
+              <text>{{item.statusDesc}}</text>
+            </view>
           </view>
         </view>
+        <view class="task-foot" wx:if="{{item.status === 'PENDING'}}">
+          <view class="btn-sm" bindtap="onDone" data-id="{{item.id}}">打卡完成</view>
+        </view>
+        <view class="task-foot" wx:else>
+          <image wx:if="{{item.photoUrl}}" class="photo" src="{{item.photoUrl}}" mode="aspectFill" />
+          <text class="done-tag">✓ 已完成</text>
+        </view>
       </view>
-      <view class="task-foot" wx:if="{{!item.done}}">
-        <view class="upload"><view class="upload-box"><van-icon name="plus" size="30rpx" color="#BDB6AC" /></view><text>上传照片</text></view>
-        <view class="btn-sm" bindtap="onDone" data-id="{{item.id}}">打卡完成</view>
-      </view>
-      <view class="task-foot" wx:else>
-        <view class="upload"><text>已上传 {{item.photos}} 张照片</text></view>
-        <view class="done-tag">✓ 已完成 {{item.doneTime}}</view>
-      </view>
+      <view class="empty" wx:if="{{filteredTasks.length === 0}}">今日暂无照护任务</view>
     </view>
-  </view>
+  </block>
+
+  <block wx:else>
+    <view class="empty-page">
+      <view class="empty-text">登录后查看今日任务</view>
+      <button class="login-btn" bindtap="onTapUser">账号登录</button>
+    </view>
+  </block>
 </view>

@@ -1,38 +1,54 @@
+const { get, post } = require('../../utils/request');
 const { getToken, getUser } = require('../../utils/auth');
 
 Page({
   data: {
-    today: '06-13 周四',
+    today: '',
     loggedIn: false,
     nickname: '',
     activeType: 'all',
     tabs: [
-      { key: 'all', label: '全部', count: 12 },
-      { key: 'feed', label: '喂食', count: 4 },
-      { key: 'walk', label: '遛弯', count: 4 },
-      { key: 'clean', label: '清洁', count: 3 },
-      { key: 'photo', label: '拍照', count: 1 }
+      { key: 'all', label: '全部', count: 0 },
+      { key: 'FEED', label: '喂食', count: 0 },
+      { key: 'WALK', label: '遛弯', count: 0 },
+      { key: 'CLEAN', label: '清洁', count: 0 },
+      { key: 'PHOTO', label: '拍照', count: 0 }
     ],
-    // 写死任务数据
-    allTasks: [
-      { id: 1, petName: '豆豆', breed: '金毛 · 标准间A03', type: '喂食', typeKey: 'feed', deadline: '08:30 前', done: false },
-      { id: 2, petName: '团子', breed: '布偶 · 猫咪房C02', type: '清洁', typeKey: 'clean', deadline: '10:00 前', done: false },
-      { id: 3, petName: '豆豆', breed: '金毛 · 标准间A03', type: '遛弯', typeKey: 'walk', deadline: '08:30', done: true, doneTime: '08:12', photos: 3 },
-      { id: 4, petName: '可乐', breed: '比熊 · 标准间A01', type: '喂食', typeKey: 'feed', deadline: '08:30', done: true, doneTime: '08:05', photos: 2 }
-    ],
+    allTasks: [],
     filteredTasks: []
   },
 
   onLoad() {
-    this.applyFilter('all');
+    this.setData({ today: this.formatDate(new Date()) });
   },
 
   onShow() {
+    const loggedIn = !!getToken();
     const user = getUser();
-    this.setData({
-      loggedIn: !!getToken(),
-      nickname: (user && user.nickname) || ''
-    });
+    this.setData({ loggedIn, nickname: (user && user.nickname) || '' });
+    if (loggedIn) {
+      this.loadTasks();
+    }
+  },
+
+  formatDate(d) {
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${d.getFullYear()}-${m}-${day}`;
+  },
+
+  loadTasks() {
+    get(`/care/tasks?date=${this.data.today}`).then((tasks) => {
+      const counts = { all: tasks.length, FEED: 0, WALK: 0, CLEAN: 0, PHOTO: 0 };
+      tasks.forEach((t) => {
+        if (counts[t.taskType] !== undefined) {
+          counts[t.taskType]++;
+        }
+      });
+      const tabs = this.data.tabs.map((tab) => ({ ...tab, count: counts[tab.key] }));
+      this.setData({ allTasks: tasks, tabs });
+      this.applyFilter(this.data.activeType);
+    }).catch(() => {});
   },
 
   onTapTab(e) {
@@ -42,8 +58,20 @@ Page({
   applyFilter(key) {
     const list = key === 'all'
       ? this.data.allTasks
-      : this.data.allTasks.filter((t) => t.typeKey === key);
+      : this.data.allTasks.filter((t) => t.taskType === key);
     this.setData({ activeType: key, filteredTasks: list });
+  },
+
+  onDone(e) {
+    const id = e.currentTarget.dataset.id;
+    wx.showLoading({ title: '打卡中' });
+    post(`/care/tasks/${id}/complete`, { note: '' })
+      .then(() => {
+        wx.hideLoading();
+        wx.showToast({ title: '已打卡', icon: 'success' });
+        this.loadTasks();
+      })
+      .catch(() => wx.hideLoading());
   },
 
   onTapUser() {
@@ -52,10 +80,5 @@ Page({
     } else {
       wx.navigateTo({ url: '/pages/login/login' });
     }
-  },
-
-  onDone(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.showToast({ title: '任务 #' + id + ' 打卡（开发中）', icon: 'none' });
   }
 });

@@ -171,3 +171,36 @@
   color: #2E9E5B;
   font-weight: 600;
 }
+
+.photo {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+}
+
+.empty {
+  padding: 120rpx 0;
+  text-align: center;
+  color: #8C8680;
+  font-size: 26rpx;
+}
+
+.empty-page {
+  padding: 200rpx 60rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-text {
+  color: #8C8680;
+  font-size: 26rpx;
+}
+
+.login-btn {
+  margin-top: 40rpx;
+  width: 100%;
+  background: #FF7A45;
+  color: #fff;
+  border-radius: 48rpx;
+}
