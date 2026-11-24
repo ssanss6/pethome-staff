@@ -80,5 +80,9 @@ Page({
     } else {
       wx.navigateTo({ url: '/pages/login/login' });
     }
+  },
+
+  onGroom() {
+    wx.navigateTo({ url: '/pages/groom/groom' });
   }
 });

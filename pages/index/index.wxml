@@ -7,6 +7,10 @@
   </view>
 
   <block wx:if="{{loggedIn}}">
+    <view class="nav-row">
+      <text class="nav-link" bindtap="onGroom">洗护工作台 ›</text>
+    </view>
+
     <!-- 筛选标签 -->
     <scroll-view scroll-x class="filter-tabs">
       <view class="tab {{activeType === item.key ? 'on' : ''}}"

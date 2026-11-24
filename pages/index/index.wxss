@@ -172,6 +172,17 @@
   font-weight: 600;
 }
 
+.nav-row {
+  padding: 0 24rpx 20rpx;
+}
+
+.nav-link {
+  display: inline-block;
+  font-size: 26rpx;
+  color: #FF7A45;
+  font-weight: 600;
+}
+
 .photo {
   width: 120rpx;
   height: 120rpx;
